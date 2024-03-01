@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dm37p0qw2e7qd"]
+
+[ext_resource type="Script" path="res://scripts/plate.gd" id="1_p4hyd"]
+[ext_resource type="Texture2D" uid="uid://bp7c02smwop1a" path="res://godot-icon.svg" id="2_8r205"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nsa1d"]
+size = Vector2(127, 126)
+
+[node name="Plate" type="Node2D"]
+script = ExtResource("1_p4hyd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8r205")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_nsa1d")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

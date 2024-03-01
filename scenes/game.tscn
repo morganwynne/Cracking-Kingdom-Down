@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk01u1bxotws2"]
+
+[ext_resource type="PackedScene" uid="uid://dn10wrliy2423" path="res://scenes/plate_holder.tscn" id="1_eol53"]
+[ext_resource type="PackedScene" uid="uid://dm37p0qw2e7qd" path="res://scenes/plate.tscn" id="2_3k1tl"]
+
+[node name="Game" type="Node"]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Game Started"
+
+[node name="PlateHolder" parent="." instance=ExtResource("1_eol53")]
+position = Vector2(139, 470)
+
+[node name="PlateHolder2" parent="." instance=ExtResource("1_eol53")]
+position = Vector2(600, 156)
+
+[node name="PlateHolder3" parent="." instance=ExtResource("1_eol53")]
+position = Vector2(972, 474)
+
+[node name="Plate" parent="." instance=ExtResource("2_3k1tl")]
+position = Vector2(353, 201)
