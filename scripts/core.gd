@@ -1,13 +1,9 @@
 class_name Core extends Node
 
 func _ready() -> void:
-  print("_ready triggered")
-
   get_tree().paused = true
 
 func _on_start_game_pressed() -> void:
-  print("_on_start_game_pressed triggered")
-
   var mainMenuUI:Control = $MainMenuUI;
 
   mainMenuUI.hide()

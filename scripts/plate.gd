@@ -10,11 +10,11 @@ func _process(_delta:float) -> void:
   if draggable:
     if Input.is_action_just_pressed("click"):
       offset = get_global_mouse_position() - global_position
-      global.is_dragging = true
-    if Input.is_action_pressed("click") and global.is_dragging:
+      global.dragging = self
+    if Input.is_action_pressed("click") and global.dragging == self:
       global_position = get_global_mouse_position() - offset
-    elif Input.is_action_just_released("click") and global.is_dragging:
-      global.is_dragging = false
+    elif Input.is_action_just_released("click") and global.dragging == self:
+      global.dragging = null
       var tween:Tween = get_tree().create_tween()
       if hovering_plate_holder:
         plate_holder = hovering_plate_holder
@@ -23,12 +23,12 @@ func _process(_delta:float) -> void:
         tween.tween_property(self, "global_position", plate_holder.position, 0.2).set_ease(Tween.EASE_OUT)
 
 func _on_area_2d_mouse_entered() -> void:
-  if not global.is_dragging:
+  if not global.dragging:
     draggable = true
     scale = Vector2(1.05, 1.05)
 
 func _on_area_2d_mouse_exited() -> void:
-  if not global.is_dragging:
+  if not global.dragging:
     draggable = false
     scale = Vector2(1, 1)
 
