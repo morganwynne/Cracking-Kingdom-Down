@@ -23,30 +23,22 @@ func _process(_delta:float) -> void:
         tween.tween_property(self, "global_position", plate_holder.position, 0.2).set_ease(Tween.EASE_OUT)
 
 func _on_area_2d_mouse_entered() -> void:
-  print("_on_area_2d_mouse_entered triggered")
-
   if not global.is_dragging:
     draggable = true
     scale = Vector2(1.05, 1.05)
 
 func _on_area_2d_mouse_exited() -> void:
-  print("_on_area_2d_mouse_exited triggered")
-
   if not global.is_dragging:
     draggable = false
     scale = Vector2(1, 1)
 
 func _on_area_2d_body_entered(body:StaticBody2D) -> void:
-  print("_on_area_2d_body_entered triggered")
-
   if body is PlateHolder:
     body.modulate = Color(Color.REBECCA_PURPLE, 1)
     if body != plate_holder:
       hovering_plate_holder = body
 
 func _on_area_2d_body_exited(body:StaticBody2D) -> void:
-  print("_on_area_2d_body_exited triggered")
-
   if body is PlateHolder:
     body.modulate = Color(Color.MEDIUM_PURPLE, 0.7)
     if body == hovering_plate_holder:
