@@ -5,22 +5,25 @@ var is_inside_dropable:bool = false
 var hovering_plate_holder:PlateHolder
 var plate_holder:PlateHolder
 var offset:Vector2
+var original_position:Vector2
 
 func _process(_delta:float) -> void:
   if draggable:
     if Input.is_action_just_pressed("click"):
       offset = get_global_mouse_position() - global_position
+      original_position = global_position
       global.dragging = self
     if Input.is_action_pressed("click") and global.dragging == self:
       global_position = get_global_mouse_position() - offset
     elif Input.is_action_just_released("click") and global.dragging == self:
       global.dragging = null
-      var tween:Tween = get_tree().create_tween()
-      if hovering_plate_holder:
-        plate_holder = hovering_plate_holder
-        tween.tween_property(self, "position", hovering_plate_holder.position, 0.2).set_ease(Tween.EASE_OUT)
+      if hovering_plate_holder and ((hovering_plate_holder.plate and plate_holder) or (hovering_plate_holder.plate == null)):
+        if hovering_plate_holder.plate and hovering_plate_holder.plate != self:
+          hovering_plate_holder.plate.change_plate_holder(plate_holder)
+        change_plate_holder(hovering_plate_holder)
       else:
-        tween.tween_property(self, "global_position", plate_holder.position, 0.2).set_ease(Tween.EASE_OUT)
+        var tween:Tween = get_tree().create_tween()
+        tween.tween_property(self, "global_position", original_position, 0.2).set_ease(Tween.EASE_OUT)
 
 func _on_area_2d_mouse_entered() -> void:
   if not global.dragging:
@@ -43,3 +46,12 @@ func _on_area_2d_body_exited(body:StaticBody2D) -> void:
     body.modulate = Color(Color.MEDIUM_PURPLE, 0.7)
     if body == hovering_plate_holder:
       hovering_plate_holder = null
+
+func change_plate_holder(new_plate_holder:PlateHolder) -> void:
+  if plate_holder and plate_holder.plate == self:
+    plate_holder.plate = null
+  new_plate_holder.plate = self
+  plate_holder = new_plate_holder
+
+  var tween:Tween = get_tree().create_tween()
+  tween.tween_property(self, "position", new_plate_holder.position, 0.2).set_ease(Tween.EASE_OUT)
