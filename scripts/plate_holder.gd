@@ -1,4 +1,6 @@
-extends StaticBody2D
+class_name PlateHolder extends StaticBody2D
+
+var plate:Plate
 
 func _ready() -> void:
   modulate = Color(Color.MEDIUM_PURPLE, 0.7)

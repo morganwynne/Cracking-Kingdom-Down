@@ -1,4 +1,4 @@
-extends Node
+class_name Core extends Node
 
 func _ready() -> void:
   print("_ready triggered")

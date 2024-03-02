@@ -18,13 +18,25 @@ offset_bottom = 23.0
 text = "Game Started"
 
 [node name="PlateHolder" parent="." instance=ExtResource("1_eol53")]
-position = Vector2(139, 470)
+position = Vector2(285, 183)
 
 [node name="PlateHolder2" parent="." instance=ExtResource("1_eol53")]
-position = Vector2(600, 156)
+position = Vector2(552, 158)
 
 [node name="PlateHolder3" parent="." instance=ExtResource("1_eol53")]
-position = Vector2(972, 474)
+position = Vector2(672, 346)
+
+[node name="PlateHolder4" parent="." instance=ExtResource("1_eol53")]
+position = Vector2(169, 369)
+
+[node name="PlateHolder5" parent="." instance=ExtResource("1_eol53")]
+position = Vector2(321, 525)
+
+[node name="PlateHolder6" parent="." instance=ExtResource("1_eol53")]
+position = Vector2(543, 529)
 
 [node name="Plate" parent="." instance=ExtResource("2_3k1tl")]
-position = Vector2(353, 201)
+position = Vector2(510, 351)
+
+[node name="Plate2" parent="." instance=ExtResource("2_3k1tl")]
+position = Vector2(341, 356)

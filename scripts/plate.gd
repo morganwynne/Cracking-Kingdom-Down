@@ -1,15 +1,14 @@
-extends Node2D
+class_name Plate extends Node2D
 
-var draggable:bool = false
+var draggable:bool = false ## Mouse is hovering over plate and will drag on click
 var is_inside_dropable:bool = false
-var body_ref:StaticBody2D
+var hovering_plate_holder:PlateHolder
+var plate_holder:PlateHolder
 var offset:Vector2
-var initialPosition:Vector2
 
 func _process(_delta:float) -> void:
   if draggable:
     if Input.is_action_just_pressed("click"):
-      initialPosition = global_position
       offset = get_global_mouse_position() - global_position
       global.is_dragging = true
     if Input.is_action_pressed("click"):
@@ -17,10 +16,11 @@ func _process(_delta:float) -> void:
     elif Input.is_action_just_released("click"):
       global.is_dragging = false
       var tween:Tween = get_tree().create_tween()
-      if is_inside_dropable:
-        tween.tween_property(self, "position", body_ref.position, 0.2).set_ease(Tween.EASE_OUT)
+      if hovering_plate_holder:
+        plate_holder = hovering_plate_holder
+        tween.tween_property(self, "position", hovering_plate_holder.position, 0.2).set_ease(Tween.EASE_OUT)
       else:
-        tween.tween_property(self, "global_position", initialPosition, 0.2).set_ease(Tween.EASE_OUT)
+        tween.tween_property(self, "global_position", plate_holder.position, 0.2).set_ease(Tween.EASE_OUT)
 
 func _on_area_2d_mouse_entered() -> void:
   print("_on_area_2d_mouse_entered triggered")
@@ -39,14 +39,13 @@ func _on_area_2d_mouse_exited() -> void:
 func _on_area_2d_body_entered(body:StaticBody2D) -> void:
   print("_on_area_2d_body_entered triggered")
 
-  if body.is_in_group('dropable_plate'):
-    is_inside_dropable = true
+  if body is PlateHolder:
+    hovering_plate_holder = body
     body.modulate = Color(Color.REBECCA_PURPLE, 1)
-    body_ref = body
 
 func _on_area_2d_body_exited(body:StaticBody2D) -> void:
   print("_on_area_2d_body_exited triggered")
 
-  if body.is_in_group('dropable_plate'):
-    is_inside_dropable = false
+  if body is PlateHolder:
+    hovering_plate_holder = null
     body.modulate = Color(Color.MEDIUM_PURPLE, 0.7)
