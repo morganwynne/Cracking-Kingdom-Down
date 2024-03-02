@@ -11,9 +11,9 @@ func _process(_delta:float) -> void:
     if Input.is_action_just_pressed("click"):
       offset = get_global_mouse_position() - global_position
       global.is_dragging = true
-    if Input.is_action_pressed("click"):
+    if Input.is_action_pressed("click") and global.is_dragging:
       global_position = get_global_mouse_position() - offset
-    elif Input.is_action_just_released("click"):
+    elif Input.is_action_just_released("click") and global.is_dragging:
       global.is_dragging = false
       var tween:Tween = get_tree().create_tween()
       if hovering_plate_holder:
