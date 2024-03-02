@@ -40,12 +40,14 @@ func _on_area_2d_body_entered(body:StaticBody2D) -> void:
   print("_on_area_2d_body_entered triggered")
 
   if body is PlateHolder:
-    hovering_plate_holder = body
     body.modulate = Color(Color.REBECCA_PURPLE, 1)
+    if body != plate_holder:
+      hovering_plate_holder = body
 
 func _on_area_2d_body_exited(body:StaticBody2D) -> void:
   print("_on_area_2d_body_exited triggered")
 
   if body is PlateHolder:
-    hovering_plate_holder = null
     body.modulate = Color(Color.MEDIUM_PURPLE, 0.7)
+    if body == hovering_plate_holder:
+      hovering_plate_holder = null
