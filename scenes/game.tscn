@@ -1,26 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://dk01u1bxotws2"]
+[gd_scene load_steps=7 format=3 uid="uid://dk01u1bxotws2"]
 
 [ext_resource type="PackedScene" uid="uid://dn10wrliy2423" path="res://scenes/plate_holder.tscn" id="1_eol53"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_r0p67"]
 [ext_resource type="PackedScene" uid="uid://dm37p0qw2e7qd" path="res://scenes/plate.tscn" id="2_3k1tl"]
+[ext_resource type="Script" path="res://scenes/end_turn_button.gd" id="4_f5sf2"]
+[ext_resource type="Script" path="res://scripts/turn_label.gd" id="4_y5emj"]
+[ext_resource type="Script" path="res://scripts/turn_counter.gd" id="5_t813l"]
 
 [node name="Game" type="Node"]
+script = ExtResource("1_r0p67")
 
 [node name="PlateHolders" type="Node" parent="."]
 
 [node name="PlateHolder1" parent="PlateHolders" node_paths=PackedStringArray("plate") instance=ExtResource("1_eol53")]
-position = Vector2(422, 105)
+position = Vector2(470, 103)
 plate = NodePath("../../Plates/Plate1")
 
 [node name="PlateHolder2" parent="PlateHolders" node_paths=PackedStringArray("plate") instance=ExtResource("1_eol53")]
-position = Vector2(647, 428)
+position = Vector2(727, 433)
 plate = NodePath("../../Plates/Plate2")
 
 [node name="PlateHolder3" parent="PlateHolders" node_paths=PackedStringArray("plate") instance=ExtResource("1_eol53")]
-position = Vector2(656, 211)
+position = Vector2(736, 216)
 plate = NodePath("../../Plates/Plate3")
 
 [node name="PlateHolder4" parent="PlateHolders" node_paths=PackedStringArray("plate") instance=ExtResource("1_eol53")]
-position = Vector2(418, 537)
+position = Vector2(468, 534)
 plate = NodePath("../../Plates/Plate4")
 
 [node name="PlateHolder5" parent="PlateHolders" node_paths=PackedStringArray("plate") instance=ExtResource("1_eol53")]
@@ -34,19 +39,19 @@ plate = NodePath("../../Plates/Plate6")
 [node name="Plates" type="Node" parent="."]
 
 [node name="Plate1" parent="Plates" node_paths=PackedStringArray("plate_holder") instance=ExtResource("2_3k1tl")]
-position = Vector2(422, 105)
+position = Vector2(470, 103)
 plate_holder = NodePath("../../PlateHolders/PlateHolder1")
 
 [node name="Plate2" parent="Plates" node_paths=PackedStringArray("plate_holder") instance=ExtResource("2_3k1tl")]
-position = Vector2(647, 428)
+position = Vector2(727, 433)
 plate_holder = NodePath("../../PlateHolders/PlateHolder2")
 
 [node name="Plate3" parent="Plates" node_paths=PackedStringArray("plate_holder") instance=ExtResource("2_3k1tl")]
-position = Vector2(656, 211)
+position = Vector2(736, 216)
 plate_holder = NodePath("../../PlateHolders/PlateHolder3")
 
 [node name="Plate4" parent="Plates" node_paths=PackedStringArray("plate_holder") instance=ExtResource("2_3k1tl")]
-position = Vector2(418, 537)
+position = Vector2(468, 534)
 plate_holder = NodePath("../../PlateHolders/PlateHolder4")
 
 [node name="Plate5" parent="Plates" node_paths=PackedStringArray("plate_holder") instance=ExtResource("2_3k1tl")]
@@ -57,14 +62,53 @@ plate_holder = NodePath("../../PlateHolders/PlateHolder5")
 position = Vector2(189, 209)
 plate_holder = NodePath("../../PlateHolders/PlateHolder6")
 
-[node name="UI" type="Control" parent="."]
+[node name="UI Sidebar" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchor_left = 0.8
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Label" type="Label" parent="UI"]
-layout_mode = 0
-offset_right = 40.0
+[node name="ColorRect" type="ColorRect" parent="UI Sidebar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.337255, 0.541176, 0.505882, 1)
+
+[node name="EndTurnButton" type="Button" parent="UI Sidebar" node_paths=PackedStringArray("turn_counter")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.85
+anchor_right = 0.9
+anchor_bottom = 0.97
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "END TURN"
+script = ExtResource("4_f5sf2")
+turn_counter = NodePath("../../TurnCounter")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI Sidebar"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
 offset_bottom = 23.0
-text = "Game Started"
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI Sidebar/VBoxContainer"]
+layout_mode = 2
+
+[node name="TurnLabel" type="Label" parent="UI Sidebar/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("turn_counter")]
+layout_mode = 2
+script = ExtResource("4_y5emj")
+turn_counter = NodePath("../../../../TurnCounter")
+
+[node name="TurnCounter" type="Node" parent="."]
+script = ExtResource("5_t813l")
+
+[connection signal="pressed" from="UI Sidebar/EndTurnButton" to="UI Sidebar/EndTurnButton" method="_on_pressed"]
