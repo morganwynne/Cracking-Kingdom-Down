@@ -12,8 +12,6 @@ func _on_start_game_pressed() -> void:
   change_game.call_deferred(load("scenes/game.tscn"))
 
 func change_game(scene:PackedScene) -> void:
-  print("change_game called")
-
   var game:Node = $Game
   
   for child:Node in game.get_children():
