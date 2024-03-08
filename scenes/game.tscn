@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dk01u1bxotws2"]
+[gd_scene load_steps=8 format=3 uid="uid://dk01u1bxotws2"]
 
 [ext_resource type="PackedScene" uid="uid://dn10wrliy2423" path="res://scenes/plate_holder.tscn" id="1_eol53"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_r0p67"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/end_turn_button.gd" id="4_f5sf2"]
 [ext_resource type="Script" path="res://scripts/turn_label.gd" id="4_y5emj"]
 [ext_resource type="Script" path="res://scripts/turn_counter.gd" id="5_t813l"]
+[ext_resource type="Script" path="res://scripts/stats_label.gd" id="6_6415t"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_r0p67")
