@@ -30,11 +30,14 @@ func _process(_delta:float) -> void:
         tween.tween_property(self, "global_position", original_position, 0.2).set_ease(Tween.EASE_OUT)
 
 func _on_area_2d_mouse_entered() -> void:
+  global.hovering = self
   if not global.dragging:
     draggable = true
     scale = Vector2(1.05, 1.05)
 
 func _on_area_2d_mouse_exited() -> void:
+  if (global.hovering == self):
+    global.hovering = null
   if not global.dragging:
     draggable = false
     scale = Vector2(1, 1)
