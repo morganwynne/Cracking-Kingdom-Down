@@ -39,44 +39,50 @@ plate = NodePath("../../Plates/Plate6")
 
 [node name="Plates" type="Node" parent="."]
 
-[node name="Plate1" parent="Plates" node_paths=PackedStringArray("plate_holder") instance=ExtResource("2_3k1tl")]
+[node name="Plate1" parent="Plates" node_paths=PackedStringArray("plate_holder", "adjacent_plates") instance=ExtResource("2_3k1tl")]
 position = Vector2(470, 103)
 plate_holder = NodePath("../../PlateHolders/PlateHolder1")
+adjacent_plates = [NodePath("../Plate6"), NodePath("../Plate3")]
 nobility = 3
 morale = 5
 resources = 7
 
-[node name="Plate2" parent="Plates" node_paths=PackedStringArray("plate_holder") instance=ExtResource("2_3k1tl")]
+[node name="Plate2" parent="Plates" node_paths=PackedStringArray("plate_holder", "adjacent_plates") instance=ExtResource("2_3k1tl")]
 position = Vector2(727, 433)
 plate_holder = NodePath("../../PlateHolders/PlateHolder2")
+adjacent_plates = [NodePath("../Plate3"), NodePath("../Plate4")]
 nobility = 3
 morale = 7
 resources = 5
 
-[node name="Plate3" parent="Plates" node_paths=PackedStringArray("plate_holder") instance=ExtResource("2_3k1tl")]
+[node name="Plate3" parent="Plates" node_paths=PackedStringArray("plate_holder", "adjacent_plates") instance=ExtResource("2_3k1tl")]
 position = Vector2(736, 216)
 plate_holder = NodePath("../../PlateHolders/PlateHolder3")
+adjacent_plates = [NodePath("../Plate1"), NodePath("../Plate2")]
 nobility = 5
 morale = 3
 resources = 7
 
-[node name="Plate4" parent="Plates" node_paths=PackedStringArray("plate_holder") instance=ExtResource("2_3k1tl")]
+[node name="Plate4" parent="Plates" node_paths=PackedStringArray("plate_holder", "adjacent_plates") instance=ExtResource("2_3k1tl")]
 position = Vector2(468, 534)
 plate_holder = NodePath("../../PlateHolders/PlateHolder4")
+adjacent_plates = [NodePath("../Plate5"), NodePath("../Plate2")]
 nobility = 5
 morale = 7
 resources = 3
 
-[node name="Plate5" parent="Plates" node_paths=PackedStringArray("plate_holder") instance=ExtResource("2_3k1tl")]
+[node name="Plate5" parent="Plates" node_paths=PackedStringArray("plate_holder", "adjacent_plates") instance=ExtResource("2_3k1tl")]
 position = Vector2(192, 435)
 plate_holder = NodePath("../../PlateHolders/PlateHolder5")
+adjacent_plates = [NodePath("../Plate6"), NodePath("../Plate4")]
 nobility = 7
 morale = 3
 resources = 5
 
-[node name="Plate6" parent="Plates" node_paths=PackedStringArray("plate_holder") instance=ExtResource("2_3k1tl")]
+[node name="Plate6" parent="Plates" node_paths=PackedStringArray("plate_holder", "adjacent_plates") instance=ExtResource("2_3k1tl")]
 position = Vector2(189, 209)
 plate_holder = NodePath("../../PlateHolders/PlateHolder6")
+adjacent_plates = [NodePath("../Plate1"), NodePath("../Plate5")]
 nobility = 7
 morale = 5
 resources = 3

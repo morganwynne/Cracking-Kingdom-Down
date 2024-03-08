@@ -7,6 +7,8 @@ var hovering_plate_holder:PlateHolder
 var offset:Vector2
 var original_position:Vector2
 
+@export var adjacent_plates: Array[Plate] = []
+
 @export var nobility:int = 0
 @export var morale:int = 0
 @export var resources:int = 0
