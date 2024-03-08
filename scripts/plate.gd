@@ -7,6 +7,10 @@ var hovering_plate_holder:PlateHolder
 var offset:Vector2
 var original_position:Vector2
 
+@export var nobility:int = 0
+@export var morale:int = 0
+@export var resources:int = 0
+
 func _process(_delta:float) -> void:
   if draggable:
     if Input.is_action_just_pressed("click"):
