@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dn10wrliy2423" path="res://scenes/plate_holder.tscn" id="1_eol53"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_r0p67"]
 [ext_resource type="PackedScene" uid="uid://dm37p0qw2e7qd" path="res://scenes/plate.tscn" id="2_3k1tl"]
-[ext_resource type="Script" path="res://scenes/end_turn_button.gd" id="4_f5sf2"]
+[ext_resource type="Script" path="res://scripts/end_turn_button.gd" id="4_f5sf2"]
 [ext_resource type="Script" path="res://scripts/turn_label.gd" id="4_y5emj"]
 [ext_resource type="Script" path="res://scripts/turn_counter.gd" id="5_t813l"]
 
