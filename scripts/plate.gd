@@ -16,6 +16,10 @@ var original_position:Vector2
 func _process(_delta:float) -> void:
   if draggable:
     if Input.is_action_just_pressed("click"):
+      var parent:Node = get_parent()
+      var childrenCount:int = parent.get_child_count()
+      parent.move_child(self, childrenCount - 1); 
+      
       offset = get_global_mouse_position() - global_position
       original_position = global_position
       global.dragging = self
