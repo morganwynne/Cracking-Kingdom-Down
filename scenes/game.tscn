@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dk01u1bxotws2"]
+[gd_scene load_steps=11 format=3 uid="uid://dk01u1bxotws2"]
 
 [ext_resource type="PackedScene" uid="uid://dn10wrliy2423" path="res://scenes/plate_holder.tscn" id="1_eol53"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_r0p67"]
 [ext_resource type="PackedScene" uid="uid://dm37p0qw2e7qd" path="res://scenes/plate.tscn" id="2_3k1tl"]
+[ext_resource type="Texture2D" uid="uid://clus1ox36lfjt" path="res://images/background.png" id="2_wjhfu"]
 [ext_resource type="Script" path="res://scripts/end_turn_button.gd" id="4_f5sf2"]
 [ext_resource type="Script" path="res://scripts/turn_label.gd" id="4_y5emj"]
 [ext_resource type="Script" path="res://scripts/turn_counter.gd" id="5_t813l"]
@@ -13,86 +14,90 @@
 [node name="Game" type="Node"]
 script = ExtResource("1_r0p67")
 
+[node name="TextureRect" type="Sprite2D" parent="."]
+position = Vector2(460, 325)
+texture = ExtResource("2_wjhfu")
+
 [node name="PlateHolders" type="Node" parent="."]
 
-[node name="PlateHolder1" parent="PlateHolders" node_paths=PackedStringArray("plate") instance=ExtResource("1_eol53")]
+[node name="PlateHolder1" parent="PlateHolders" node_paths=PackedStringArray("plate", "adjacent_plate_holders") instance=ExtResource("1_eol53")]
 position = Vector2(470, 103)
 plate = NodePath("../../Plates/Plate1")
+adjacent_plate_holders = [NodePath("../PlateHolder3"), NodePath("../PlateHolder6")]
 
-[node name="PlateHolder2" parent="PlateHolders" node_paths=PackedStringArray("plate") instance=ExtResource("1_eol53")]
+[node name="PlateHolder2" parent="PlateHolders" node_paths=PackedStringArray("plate", "adjacent_plate_holders") instance=ExtResource("1_eol53")]
 position = Vector2(727, 433)
 plate = NodePath("../../Plates/Plate2")
+adjacent_plate_holders = [NodePath("../PlateHolder3"), NodePath("../PlateHolder4")]
 
-[node name="PlateHolder3" parent="PlateHolders" node_paths=PackedStringArray("plate") instance=ExtResource("1_eol53")]
+[node name="PlateHolder3" parent="PlateHolders" node_paths=PackedStringArray("plate", "adjacent_plate_holders") instance=ExtResource("1_eol53")]
 position = Vector2(736, 216)
 plate = NodePath("../../Plates/Plate3")
+adjacent_plate_holders = [NodePath("../PlateHolder1"), NodePath("../PlateHolder2")]
 
-[node name="PlateHolder4" parent="PlateHolders" node_paths=PackedStringArray("plate") instance=ExtResource("1_eol53")]
+[node name="PlateHolder4" parent="PlateHolders" node_paths=PackedStringArray("plate", "adjacent_plate_holders") instance=ExtResource("1_eol53")]
 position = Vector2(468, 534)
 plate = NodePath("../../Plates/Plate4")
+adjacent_plate_holders = [NodePath("../PlateHolder2"), NodePath("../PlateHolder5")]
 
-[node name="PlateHolder5" parent="PlateHolders" node_paths=PackedStringArray("plate") instance=ExtResource("1_eol53")]
+[node name="PlateHolder5" parent="PlateHolders" node_paths=PackedStringArray("plate", "adjacent_plate_holders") instance=ExtResource("1_eol53")]
 position = Vector2(192, 435)
 plate = NodePath("../../Plates/Plate5")
+adjacent_plate_holders = [NodePath("../PlateHolder4"), NodePath("../PlateHolder6")]
 
-[node name="PlateHolder6" parent="PlateHolders" node_paths=PackedStringArray("plate") instance=ExtResource("1_eol53")]
+[node name="PlateHolder6" parent="PlateHolders" node_paths=PackedStringArray("plate", "adjacent_plate_holders") instance=ExtResource("1_eol53")]
 position = Vector2(189, 209)
 plate = NodePath("../../Plates/Plate6")
+adjacent_plate_holders = [NodePath("../PlateHolder5"), NodePath("../PlateHolder1")]
 
 [node name="Plates" type="Node" parent="."]
 
-[node name="Plate1" parent="Plates" node_paths=PackedStringArray("plate_holder", "adjacent_plates") instance=ExtResource("2_3k1tl")]
+[node name="Plate1" parent="Plates" node_paths=PackedStringArray("plate_holder") instance=ExtResource("2_3k1tl")]
 position = Vector2(470, 103)
 plate_holder = NodePath("../../PlateHolders/PlateHolder1")
-adjacent_plates = [NodePath("../Plate6"), NodePath("../Plate3")]
 nobility = 3
 morale = 5
 resources = 7
 boosted_amount = 1
 
-[node name="Plate2" parent="Plates" node_paths=PackedStringArray("plate_holder", "adjacent_plates") instance=ExtResource("2_3k1tl")]
+[node name="Plate2" parent="Plates" node_paths=PackedStringArray("plate_holder") instance=ExtResource("2_3k1tl")]
 position = Vector2(727, 433)
 plate_holder = NodePath("../../PlateHolders/PlateHolder2")
-adjacent_plates = [NodePath("../Plate3"), NodePath("../Plate4")]
 nobility = 3
 morale = 7
 resources = 5
 boosted_amount = 2
 
-[node name="Plate3" parent="Plates" node_paths=PackedStringArray("plate_holder", "adjacent_plates") instance=ExtResource("2_3k1tl")]
+[node name="Plate3" parent="Plates" node_paths=PackedStringArray("plate_holder") instance=ExtResource("2_3k1tl")]
 position = Vector2(736, 216)
 plate_holder = NodePath("../../PlateHolders/PlateHolder3")
-adjacent_plates = [NodePath("../Plate1"), NodePath("../Plate2")]
 nobility = 5
 morale = 3
 resources = 7
 boosted_stat = 1
 boosted_amount = 1
 
-[node name="Plate4" parent="Plates" node_paths=PackedStringArray("plate_holder", "adjacent_plates") instance=ExtResource("2_3k1tl")]
+[node name="Plate4" parent="Plates" node_paths=PackedStringArray("plate_holder") instance=ExtResource("2_3k1tl")]
 position = Vector2(468, 534)
 plate_holder = NodePath("../../PlateHolders/PlateHolder4")
-adjacent_plates = [NodePath("../Plate5"), NodePath("../Plate2")]
 nobility = 5
 morale = 7
 resources = 3
 boosted_stat = 1
 boosted_amount = 2
 
-[node name="Plate5" parent="Plates" node_paths=PackedStringArray("plate_holder", "adjacent_plates") instance=ExtResource("2_3k1tl")]
+[node name="Plate5" parent="Plates" node_paths=PackedStringArray("plate_holder") instance=ExtResource("2_3k1tl")]
 position = Vector2(192, 435)
 plate_holder = NodePath("../../PlateHolders/PlateHolder5")
-adjacent_plates = [NodePath("../Plate6"), NodePath("../Plate4")]
 nobility = 7
 morale = 3
 resources = 5
 boosted_stat = 2
 boosted_amount = 1
 
-[node name="Plate6" parent="Plates" node_paths=PackedStringArray("plate_holder", "adjacent_plates") instance=ExtResource("2_3k1tl")]
+[node name="Plate6" parent="Plates" node_paths=PackedStringArray("plate_holder") instance=ExtResource("2_3k1tl")]
 position = Vector2(189, 209)
 plate_holder = NodePath("../../PlateHolders/PlateHolder6")
-adjacent_plates = [NodePath("../Plate1"), NodePath("../Plate5")]
 nobility = 7
 morale = 5
 resources = 3
@@ -116,7 +121,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.337255, 0.541176, 0.505882, 1)
 
-[node name="EndTurnButton" type="Button" parent="UI Sidebar" node_paths=PackedStringArray("turn_counter", "plates")]
+[node name="EndTurnButton" type="Button" parent="UI Sidebar" node_paths=PackedStringArray("turn_counter")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
@@ -129,7 +134,6 @@ grow_vertical = 0
 text = "END TURN"
 script = ExtResource("4_f5sf2")
 turn_counter = NodePath("../../TurnCounter")
-plates = [NodePath("../../Plates/Plate1"), NodePath("../../Plates/Plate2"), NodePath("../../Plates/Plate3"), NodePath("../../Plates/Plate4"), NodePath("../../Plates/Plate5"), NodePath("../../Plates/Plate6")]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI Sidebar"]
 layout_mode = 1
@@ -166,7 +170,8 @@ layout_mode = 2
 label_settings = ExtResource("7_7d5uf")
 script = ExtResource("8_h1myy")
 
-[node name="TurnCounter" type="Node" parent="."]
+[node name="TurnCounter" type="Node" parent="." node_paths=PackedStringArray("plates")]
 script = ExtResource("5_t813l")
+plates = [NodePath("../Plates/Plate1"), NodePath("../Plates/Plate2"), NodePath("../Plates/Plate3"), NodePath("../Plates/Plate4"), NodePath("../Plates/Plate5"), NodePath("../Plates/Plate6")]
 
 [connection signal="pressed" from="UI Sidebar/EndTurnButton" to="UI Sidebar/EndTurnButton" method="_on_pressed"]

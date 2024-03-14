@@ -7,8 +7,6 @@ var hovering_plate_holder:PlateHolder
 var offset:Vector2
 var original_position:Vector2
 
-@export var adjacent_plates: Array[Plate] = []
-
 @export var nobility:int = 0
 @export var morale:int = 0
 @export var resources:int = 0
@@ -54,13 +52,13 @@ func _on_area_2d_mouse_exited() -> void:
 
 func _on_area_2d_body_entered(body:StaticBody2D) -> void:
   if body is PlateHolder:
-    body.modulate = Color(Color.REBECCA_PURPLE, 1)
+    body.modulate = Color(Color.BLANCHED_ALMOND, 1)
     if body != plate_holder:
       hovering_plate_holder = body
 
 func _on_area_2d_body_exited(body:StaticBody2D) -> void:
   if body is PlateHolder:
-    body.modulate = Color(Color.MEDIUM_PURPLE, 0.7)
+    body.modulate = Color(Color.BLANCHED_ALMOND, 0.7)
     if body == hovering_plate_holder:
       hovering_plate_holder = null
 
@@ -75,7 +73,8 @@ func change_plate_holder(new_plate_holder:PlateHolder, animate:bool) -> void:
     tween.tween_property(self, "position", new_plate_holder.position, 0.2).set_ease(Tween.EASE_OUT)
 
 func process_end_turn(_turn:int) -> void:
-  for adjacent_plate:Plate in adjacent_plates:
+  for adjacent_plate_holder:PlateHolder in plate_holder.adjacent_plate_holders:
+    var adjacent_plate:Plate = adjacent_plate_holder.plate
     if (adjacent_plate.boosted_stat == Stats.RESOURCES):
       resources += adjacent_plate.boosted_amount
     elif (adjacent_plate.boosted_stat == Stats.NOBILITY):

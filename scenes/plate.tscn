@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dm37p0qw2e7qd"]
 
 [ext_resource type="Script" path="res://scripts/plate.gd" id="1_p4hyd"]
-[ext_resource type="Texture2D" uid="uid://bp7c02smwop1a" path="res://godot-icon.svg" id="2_8r205"]
+[ext_resource type="Texture2D" uid="uid://bc43ieyspsxc6" path="res://images/plate1.png" id="2_lm71e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nsa1d"]
 size = Vector2(127, 126)
@@ -10,7 +10,7 @@ size = Vector2(127, 126)
 script = ExtResource("1_p4hyd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_8r205")
+texture = ExtResource("2_lm71e")
 
 [node name="Area2D" type="Area2D" parent="."]
 

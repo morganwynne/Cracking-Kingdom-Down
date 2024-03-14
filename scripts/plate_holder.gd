@@ -1,6 +1,7 @@
 class_name PlateHolder extends StaticBody2D
 
 @export var plate:Plate
+@export var adjacent_plate_holders: Array[PlateHolder] = []
 
 func _ready() -> void:
   modulate = Color(Color.MEDIUM_PURPLE, 0.7)
