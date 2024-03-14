@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dk01u1bxotws2"]
+[gd_scene load_steps=10 format=3 uid="uid://dk01u1bxotws2"]
 
 [ext_resource type="PackedScene" uid="uid://dn10wrliy2423" path="res://scenes/plate_holder.tscn" id="1_eol53"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_r0p67"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/turn_counter.gd" id="5_t813l"]
 [ext_resource type="Script" path="res://scripts/stats_label.gd" id="6_wr3k4"]
 [ext_resource type="LabelSettings" uid="uid://b4reibfcl703y" path="res://labelfont.tres" id="7_7d5uf"]
+[ext_resource type="Script" path="res://scripts/boost_label.gd" id="8_h1myy"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_r0p67")
@@ -47,6 +48,7 @@ adjacent_plates = [NodePath("../Plate6"), NodePath("../Plate3")]
 nobility = 3
 morale = 5
 resources = 7
+boosted_amount = 1
 
 [node name="Plate2" parent="Plates" node_paths=PackedStringArray("plate_holder", "adjacent_plates") instance=ExtResource("2_3k1tl")]
 position = Vector2(727, 433)
@@ -55,6 +57,7 @@ adjacent_plates = [NodePath("../Plate3"), NodePath("../Plate4")]
 nobility = 3
 morale = 7
 resources = 5
+boosted_amount = 2
 
 [node name="Plate3" parent="Plates" node_paths=PackedStringArray("plate_holder", "adjacent_plates") instance=ExtResource("2_3k1tl")]
 position = Vector2(736, 216)
@@ -63,6 +66,8 @@ adjacent_plates = [NodePath("../Plate1"), NodePath("../Plate2")]
 nobility = 5
 morale = 3
 resources = 7
+boosted_stat = 1
+boosted_amount = 1
 
 [node name="Plate4" parent="Plates" node_paths=PackedStringArray("plate_holder", "adjacent_plates") instance=ExtResource("2_3k1tl")]
 position = Vector2(468, 534)
@@ -71,6 +76,8 @@ adjacent_plates = [NodePath("../Plate5"), NodePath("../Plate2")]
 nobility = 5
 morale = 7
 resources = 3
+boosted_stat = 1
+boosted_amount = 2
 
 [node name="Plate5" parent="Plates" node_paths=PackedStringArray("plate_holder", "adjacent_plates") instance=ExtResource("2_3k1tl")]
 position = Vector2(192, 435)
@@ -79,6 +86,8 @@ adjacent_plates = [NodePath("../Plate6"), NodePath("../Plate4")]
 nobility = 7
 morale = 3
 resources = 5
+boosted_stat = 2
+boosted_amount = 1
 
 [node name="Plate6" parent="Plates" node_paths=PackedStringArray("plate_holder", "adjacent_plates") instance=ExtResource("2_3k1tl")]
 position = Vector2(189, 209)
@@ -87,6 +96,8 @@ adjacent_plates = [NodePath("../Plate1"), NodePath("../Plate5")]
 nobility = 7
 morale = 5
 resources = 3
+boosted_stat = 2
+boosted_amount = 2
 
 [node name="UI Sidebar" type="Control" parent="."]
 layout_mode = 3
@@ -105,7 +116,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.337255, 0.541176, 0.505882, 1)
 
-[node name="EndTurnButton" type="Button" parent="UI Sidebar" node_paths=PackedStringArray("turn_counter")]
+[node name="EndTurnButton" type="Button" parent="UI Sidebar" node_paths=PackedStringArray("turn_counter", "plates")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
@@ -118,6 +129,7 @@ grow_vertical = 0
 text = "END TURN"
 script = ExtResource("4_f5sf2")
 turn_counter = NodePath("../../TurnCounter")
+plates = [NodePath("../../Plates/Plate1"), NodePath("../../Plates/Plate2"), NodePath("../../Plates/Plate3"), NodePath("../../Plates/Plate4"), NodePath("../../Plates/Plate5"), NodePath("../../Plates/Plate6")]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI Sidebar"]
 layout_mode = 1
@@ -148,6 +160,11 @@ layout_mode = 2
 label_settings = ExtResource("7_7d5uf")
 script = ExtResource("6_wr3k4")
 stat = 2
+
+[node name="BoostLabel" type="Label" parent="UI Sidebar/VBoxContainer"]
+layout_mode = 2
+label_settings = ExtResource("7_7d5uf")
+script = ExtResource("8_h1myy")
 
 [node name="TurnCounter" type="Node" parent="."]
 script = ExtResource("5_t813l")

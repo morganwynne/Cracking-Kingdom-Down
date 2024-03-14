@@ -4,19 +4,18 @@ enum Stats {RESOURCES, NOBILITY, MORALE}
 @export var stat:Stats
 
 func _process(_delta:float) -> void:
+  var plate:Plate
   if (global.dragging):
-    if (stat == Stats.RESOURCES):
-      text = "Resources: " + str(global.dragging.resources)
-    if (stat == Stats.NOBILITY):
-      text = "Nobility: " + str(global.dragging.nobility)
-    if (stat == Stats.MORALE):
-      text = "Morale: " + str(global.dragging.morale)
+    plate = global.dragging
   elif (global.hovering):
+    plate = global.hovering
+  
+  if (plate):
     if (stat == Stats.RESOURCES):
-      text = "Resources: " + str(global.hovering.resources)
-    if (stat == Stats.NOBILITY):
-      text = "Nobility: " + str(global.hovering.nobility)
-    if (stat == Stats.MORALE):
-      text = "Morale: " + str(global.hovering.morale)
+      text = "Resources: " + str(plate.resources)
+    elif (stat == Stats.NOBILITY):
+      text = "Nobility: " + str(plate.nobility)
+    elif (stat == Stats.MORALE):
+      text = "Morale: " + str(plate.morale)
   else:
       text = ""

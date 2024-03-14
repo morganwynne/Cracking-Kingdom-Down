@@ -13,6 +13,10 @@ var original_position:Vector2
 @export var morale:int = 0
 @export var resources:int = 0
 
+enum Stats {RESOURCES, NOBILITY, MORALE}
+@export var boosted_stat:Stats
+@export var boosted_amount:int
+
 func _process(_delta:float) -> void:
   if draggable:
     if Input.is_action_just_pressed("click"):
@@ -69,3 +73,12 @@ func change_plate_holder(new_plate_holder:PlateHolder, animate:bool) -> void:
   if animate:
     var tween:Tween = get_tree().create_tween()
     tween.tween_property(self, "position", new_plate_holder.position, 0.2).set_ease(Tween.EASE_OUT)
+
+func process_end_turn(_turn:int) -> void:
+  for adjacent_plate:Plate in adjacent_plates:
+    if (adjacent_plate.boosted_stat == Stats.RESOURCES):
+      resources += adjacent_plate.boosted_amount
+    elif (adjacent_plate.boosted_stat == Stats.NOBILITY):
+      nobility += adjacent_plate.boosted_amount
+    elif (adjacent_plate.boosted_stat == Stats.MORALE):
+      morale += adjacent_plate.boosted_amount 
